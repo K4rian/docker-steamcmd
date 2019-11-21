@@ -21,12 +21,15 @@ The image is based on [debian](https://hub.docker.com/_/debian/):[buster-slim](h
 
 Whilst this image *should* be used as a base image for any supported SteamCMD game server, it can also be used directly for testing purposes.
 
-__Example 1:__ Create a new container and get access to the `SteamCMD` console:
+__Example 1:__                                 
+Create a new container and get access to the `SteamCMD` console:
 ```
 $ docker run -it --name=steamcmd -i k4rian/steamcmd bash
 ```
 
-__Example 2:__ Create a new (and ephemeral) container and use `SteamCMD` to download the *Left 4 Dead 2 Dedicated Server* files then quit:
+
+__Example 2:__                                  
+Create a new (and ephemeral) container and use `SteamCMD` to download the *Left 4 Dead 2 Dedicated Server* files then quit:
 ```
 $ docker run --rm -i k4rian/steamcmd \
              +login anonymous \
