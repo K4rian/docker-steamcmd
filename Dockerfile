@@ -2,8 +2,8 @@ FROM debian:buster-slim
 
 LABEL maintainer="contact@k4rian.com"
 
-ENV USER steam
-ENV USERHOME /home/$USER
+ENV USERNAME steam
+ENV USERHOME /home/$USERNAME
 ENV STEAMCMDDIR $USERHOME/steamcmd
 ENV SERVERDIR $USERHOME/gameserver
 
@@ -14,8 +14,8 @@ RUN set -x \
         lib32gcc1=1:8.3.0-6 \
         ca-certificates=20190110 \
         wget=1.20.1-1.1 \
-    && useradd -m $USER \
-    && su $USER -c \
+    && useradd -m $USERNAME \
+    && su $USERNAME -c \
         "mkdir -p ${STEAMCMDDIR} \
         && cd ${STEAMCMDDIR} \
         && wget -qO- 'https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz' | tar zxf - \
@@ -29,7 +29,7 @@ RUN set -x \
     && apt-get autoremove -y \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-USER $USER
+USER $USERNAME
 WORKDIR $STEAMCMDDIR
 
 ENTRYPOINT ["./steamcmd.sh"]
