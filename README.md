@@ -40,9 +40,29 @@ $ docker run --rm -i k4rian/steamcmd \
 
 
 
+## Manual build
+
+__Requirements__:                               
+— Docker >= __18.03.1__                         
+— Git *(optional)*
+
+Like any Docker image the building process is pretty straightforward. 
+
+- Clone (or download) the GitHub repository to an empty folder on your local machine:
+```
+$ git clone https://github.com/K4rian/docker-steamcmd.git .
+```
+
+- Then run the following command inside the newly created folder:
+```
+$ docker build --no-cache -t steamcmd .
+```
+
+
+
 ## See also
 
-* __[docker-srcds](https://github.com/k4rian/docker-srcds)__ — A Docker image used to run any *Source Dedicated Server* games *(like Counter-Strike: Source/GO, Left 4 Dead 1/2, Team Fortress 2, etc.)* who use __[steamcmd](#)__ image as base.
+* __[docker-srcds](https://github.com/K4rian/docker-srcds)__ — A Docker image used to run any *Source Dedicated Server* games *(Counter-Strike: Source/GO, Left 4 Dead 1/2, Team Fortress 2, etc.)* who use this image as base.
 
 
 
