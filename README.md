@@ -18,7 +18,7 @@ This image can be considered a fork of [CM2Walki](https://github.com/CM2Walki)'s
 
 ## Variants
 
-The `steamcmd` image come in two variants:
+The `steamcmd` image comes in two variants:
 
 - :__[latest](https://github.com/K4rian/docker-steamcmd/tree/master)__ — the default and the most bug-free image. You probably want to use this one.
 - :[min](https://github.com/K4rian/docker-steamcmd/tree/min) — the minimal version of the image that doesn't contain the language locale fix and, thus, is about 20% smaller. Used to save space on testing environments.
