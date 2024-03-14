@@ -1,8 +1,10 @@
-FROM debian:buster-slim
+FROM debian:bookworm-slim
 
-LABEL maintainer="contact@k4rian.com"
+ARG PUID=1000
+ARG PGID=1000
 
 ENV USERNAME steam
+ENV USERGROUP steam
 ENV USERHOME /home/$USERNAME
 ENV STEAMCMDDIR $USERHOME/steamcmd
 ENV SERVERDIR $USERHOME/gameserver
@@ -10,25 +12,31 @@ ENV SERVERDIR $USERHOME/gameserver
 RUN set -x \
     && apt-get update \
     && apt-get install -y --no-install-recommends --no-install-suggests \
-        lib32stdc++6=8.3.0-6 \
-        lib32gcc1=1:8.3.0-6 \
-        ca-certificates=20190110 \
-        locales=2.28-10 \
-        wget=1.20.1-1.1 \
+        lib32stdc++6=12.2.0-14 \
+        lib32gcc-s1=12.2.0-14 \
+        ca-certificates=20230311 \
+        locales=2.36-9+deb12u4 \
+        wget=1.21.3-1+b2 \
     && sed -i 's/^# *\(en_US.UTF-8\)/\1/' /etc/locale.gen \
     && locale-gen \
-    && useradd -m $USERNAME \
+    && groupadd -g "${PGID}" $USERGROUP \
+    && useradd -u "${PUID}" -g "${PGID}" -m $USERNAME \
     && su $USERNAME -c \
         "mkdir -p ${STEAMCMDDIR} \
         && cd ${STEAMCMDDIR} \
         && wget -qO- 'https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz' | tar zxf - \
-        && chmod 755 ./steamcmd.sh \
-        && mkdir -p ${USERHOME}/.steam/sdk32 \
-        && ln -sf ${STEAMCMDDIR}/linux32/steamclient.so ${USERHOME}/.steam/sdk32/steamclient.so \
+        && chmod +x ./steamcmd.sh \
+        && mkdir -p ${USERHOME}/.steam/sdk32 ${USERHOME}/.steam/sdk64 ${STEAMCMDDIR}/linux32 ${STEAMCMDDIR}/linux64 \
+        && ln -s ${STEAMCMDDIR}/linux32/steamclient.so ${USERHOME}/.steam/sdk32/steamclient.so \
+        && ln -s ${STEAMCMDDIR}/linux32/steamcmd ${STEAMCMDDIR}/linux32/steam \
+        && ln -s ${STEAMCMDDIR}/linux64/steamclient.so ${USERHOME}/.steam/sdk64/steamclient.so \
+        && ln -s ${STEAMCMDDIR}/linux64/steamcmd ${STEAMCMDDIR}/linux64/steam \
+        && ln -s ${STEAMCMDDIR}/steamcmd.sh ${STEAMCMDDIR}/steam.sh \
         && mkdir -p ${SERVERDIR} \
         && { echo 'export LC_ALL=en_US.UTF-8'; \
              echo 'export LANG=en_US.UTF-8'; \
              echo 'export LANGUAGE=en_US.UTF-8'; } >> ~/.bashrc" \
+    && ln -s "${STEAMCMDDIR}/linux64/steamclient.so" "/usr/lib/x86_64-linux-gnu/steamclient.so" \
     && apt-get remove --purge -y \
         wget \
     && apt-get clean autoclean \
