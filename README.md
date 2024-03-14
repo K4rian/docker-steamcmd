@@ -9,8 +9,8 @@ A base Docker image for Valve's [SteamCMD][1] based on [Debian][2] (bookworm-sli
 
 Docker Tag  | Version | Platform | Description
 ---         | ---     | ---      | ---
-[latest][3] | 1.1     | amd64    | The default and the most bug-free image. You probably want to use this one.
-[min][4]    | 1.1     | amd64    | The minimal version of the image that doesn't contain the language locale fix and, thus, is about 20% smaller.
+[latest][3] | 1.1     | amd64    | The default and the most bug-free image.
+[min][4]    | 1.1     | amd64    | Minimal version that doesn't contain the language locale fix and, thus, is about 20% smaller.
 </div>
 <p align="center"><a href="#introduction">Introduction</a> &bull; <a href="#usage">Usage</a> &bull; <a href="#manual-build">Manual build</a> &bull; <a href="#see-also">See also</a> &bull; <a href="#license">License</a></p>
 
@@ -57,10 +57,10 @@ git clone https://github.com/K4rian/docker-steamcmd.git .
 
 - Then run the following commands inside the newly created folder:
 ```bash
-docker build --no-cache -f Dockerfile -t k4rian/steamcmd:latest
+docker build --no-cache -f Dockerfile -t k4rian/steamcmd:latest .
 ```
 ```bash
-docker build --no-cache -f min.Dockerfile -t k4rian/steamcmd:min
+docker build --no-cache -f min.Dockerfile -t k4rian/steamcmd:min .
 ```
 
 ## See also
