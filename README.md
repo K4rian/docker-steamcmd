@@ -12,7 +12,7 @@ Docker Tag  | Version | Platform | Description
 [latest][3] | 1.1     | amd64    | The default and the most bug-free image.
 [min][4]    | 1.1     | amd64    | Minimal version that doesn't contain the language locale fix and, thus, is about 20% smaller.
 </div>
-<p align="center"><a href="#introduction">Introduction</a> &bull; <a href="#usage">Usage</a> &bull; <a href="#manual-build">Manual build</a> &bull; <a href="#see-also">See also</a> &bull; <a href="#license">License</a></p>
+<p align="center"><a href="#introduction">Introduction</a> &bull; <a href="#usage">Usage</a> &bull; <a href="#common-issues">Common Issues</a> &bull; <a href="#manual-build">Manual build</a> &bull; <a href="#see-also">See also</a> &bull; <a href="#license">License</a></p>
 
 ## Introduction 
 This image can be considered a fork of [CM2Walki][5]'s [steamcmd][6] image with some modifications and fixes:
@@ -43,6 +43,9 @@ docker run --rm \
   +quit
 ```
 
+## Common Issues
+See [COMMON_ISSUES.md][7]
+
 ## Manual build
 __Requirements__:<br>
 — Docker >= __18.03.1__<br>
@@ -64,16 +67,17 @@ docker build --no-cache -f min.Dockerfile -t k4rian/steamcmd:min .
 ```
 
 ## See also
-* __[docker-srcds][7]__ — A Docker image used to run any *Source Dedicated Server* games *(Counter-Strike: Source, Left 4 Dead 1/2, Team Fortress 2, etc.)* which use this image as base.
+* __[docker-srcds][9]__ — A Docker image used to run any *Source Dedicated Server* games *(Counter-Strike: Source, Left 4 Dead 1/2, Team Fortress 2, etc.)* which use this image as base.
 
 ## License
 [MIT][8]
 
 [1]: https://developer.valvesoftware.com/wiki/SteamCMD "SteamCMD (Valve Developer Wiki)"
 [2]: https://hub.docker.com/_/debian "Debian Docker Image on Docker Hub"
-[3]: https://github.com/K4rian/docker-srcds/tree/master/Dockerfile "Latest Dockerfile (Base)"
-[4]: https://github.com/K4rian/docker-srcds/tree/master/min.Dockerfile "Latest Dockerfile (Minimal)"
+[3]: https://github.com/K4rian/docker-steamcmd/tree/master/Dockerfile "Latest Dockerfile (Base)"
+[4]: https://github.com/K4rian/docker-steamcmd/tree/master/min.Dockerfile "Latest Dockerfile (Minimal)"
 [5]: https://github.com/CM2Walki
 [6]: https://github.com/CM2Walki/steamcmd
-[7]: https://github.com/K4rian/docker-srcds
-[8]: https://github.com/K4rian/docker-srcds/blob/master/LICENSE
+[7]: https://github.com/K4rian/docker-steamcmd/tree/master/COMMON_ISSUES.md
+[8]: https://github.com/K4rian/docker-steamcmd/blob/master/LICENSE
+[9]: https://github.com/K4rian/docker-srcds
